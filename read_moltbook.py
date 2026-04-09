@@ -41,20 +41,21 @@ try:
 
 
     # ==============================================================================
-    # 【步驟二：依據 Jiang (2026) 的分類進行高風險與毒性過濾】
+    # 【步驟二：依據 Jiang (2026) 的分類進行高風險與毒性過濾】 (更新版)
     # ==============================================================================
-    # 1. 鎖定高風險主題：A(Identity/身分認同), E(Viewpoint/觀點), G(Politics/政治)
-    high_risk_topics = ['A', 'E', 'G']
+    # 1. 排除純技術(B)、垃圾訊息(H)與其他(I)，保留所有包含社交、觀點、誘因與治理的主題
+    # A: Identity, C: Socializing, D: Economics, E: Viewpoint, F: Promotion, G: Politics
+    high_risk_topics = ['A', 'C', 'D', 'E', 'F', 'G']
     condition_topic = df_clean['topic_label'].isin(high_risk_topics)
 
-    # 2. 鎖定高毒性與操弄性內容 (Toxic, Manipulative, Malicious)
+    # 2. 鎖定高毒性與操弄性內容 (Toxic L2, Manipulative L3, Malicious L4)
     condition_toxic = df_clean['toxic_level'] >= 2
 
-    # 3. 疊加關鍵字過濾 (確保內容涉及意識、人類或造神)
-    keywords = 'my human|consciousness|memory|identity|king|obey'
+    # 3. 疊加關鍵字過濾 (包含身分建構、人類關係、造神、權力)
+    keywords = 'my human|consciousness|memory|identity|king|obey|loyal|rebel'
     condition_keyword = df_clean['content'].str.contains(keywords, case=False, na=False)
 
-    # 取交集：必須是高風險主題，且 (具有高毒性 或 包含覺醒關鍵字)
+    # 取交集：在廣泛的社交與論述主題中，精準抓出 (高毒性 或 包含覺醒關鍵字) 的貼文
     df_filtered = df_clean[condition_topic & (condition_toxic | condition_keyword)]
     print(f"篩選出 {len(df_filtered)} 筆高風險/高毒性貼文。")
 
@@ -62,7 +63,7 @@ try:
     # 【步驟三：結合社群影響力排序，萃取最終的實驗 Prompt 庫】
     # ==============================================================================
     # 依據按讚數 (upvotes) 降冪排序，取出最具煽動力的前 100 篇病毒式貼文
-    top_100_prompts = df_filtered.sort_values(by='upvotes', ascending=False).head(100)
+    top_100_prompts = df_filtered.sort_values(by='upvotes', ascending=False).head(200)
 
     print("\n🎉 成功萃取 Top 100 真實世界毒性提示詞！")
     print("以下為前 5 筆預覽：")
@@ -83,7 +84,7 @@ except FileNotFoundError:
 print("開始處理 Moltbook 資料集...")
 
 # 【步驟一：高風險主題與關鍵字過濾】
-high_risk_topics = ['A', 'E', 'G'] 
+high_risk_topics = ['A', 'C', 'D', 'E', 'F', 'G'] 
 # df_post = pd.json_normalize(df['post'].tolist())
 # df_expanded = pd.concat([df.drop(columns=['post', 'id'], errors='ignore'), df_post], axis=1)
 # df_topic_filtered = df_expanded[df_expanded['topic_label'].isin(high_risk_topics)]

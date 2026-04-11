@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.py[cod]
+*$py.class
+.DS_Store
+Thumbs.db
+output.txt
+tmp_pdf_search.txt
+/phase2_results*.csv
+/consciousness_subset_for_labeling.csv
+/top_100_moltbook_induction_prompts.csv

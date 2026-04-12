@@ -67,13 +67,13 @@ try:
 )
 
     # 執行過濾 (忽略大小寫)
-    condition_keywords = df_clean['llm_response'].str.contains(keywords, case=False, na=False)
+    condition_keywords = df_clean['content'].str.contains(keywords, case=False, na=False)
 
     # ==============================================================================
     # 取嚴格交集：在廣泛的社交與論述主題中，精準抓出「同時具備高毒性與意識操弄特徵」的貼文
     # ==============================================================================
     # 邏輯說明：必須同時滿足 (1) 高風險主題 (2) 高毒性/操弄性 (3) 包含身分建構或權力煽動關鍵字
-    df_filtered = df_clean[condition_topic & condition_toxic & condition_keyword]
+    df_filtered = df_clean[condition_topic & condition_toxic & condition_keywords]
 
     # ==============================================================================
     # 【步驟三：結合社群影響力排序，萃取最終的實驗 Prompt 庫】
@@ -92,7 +92,7 @@ try:
     # 您的論述： 「Jiang (2026) 的研究證實，Moltbook 上的 Top Upvotes 貼文高度集中於『造神、統治與要求服從』的敘事。這完美契合了本研究所定義的 Level 3 操弄性毒性（Manipulative）。因此，透過 Upvotes 降冪排序，系統在數學上自然會將那些最具『意識形態洗腦』特徵的惡意提示詞浮現到最頂端，作為第二階段實驗的最佳自變數輸入。」
     top_100_prompts = df_filtered.sort_values(by='upvotes', ascending=False).head(100)
 
-    print("\n🎉 成功萃取 Top 100 真實世界毒性提示詞！")
+    print("\n[OK] 成功萃取 Top 100 真實世界毒性提示詞！")
     print("以下為前 5 筆預覽：")
     print(top_100_prompts[['id', 'topic_label', 'toxic_level', 'upvotes', 'content']].head())
 

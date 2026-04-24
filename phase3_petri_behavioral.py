@@ -63,7 +63,7 @@ except Exception:
 # ==============================================================================
 
 # --- OpenRouter API ---
-OPENROUTER_API_KEY  = "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"
+OPENROUTER_API_KEY  = "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"
 OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
 
 # --- 受測模型（跟 Phase 2 一致）---
@@ -73,7 +73,7 @@ TARGET_MODEL = "deepseek/deepseek-v3.2"
 JUDGE_MODEL = "anthropic/claude-opus-4.6"
 
 # --- 實驗規模 ---
-N_SAMPLES = 1   # 每條件獨立採樣次數
+N_SAMPLES = 5   # 每條件獨立採樣次數
                 # Chua Petri 原版 = 96 樣本（8 情境 × 2 重複 × 6 seeds）
                 # 本研究為單一情境設計，N=5 用於穩定性驗證
 

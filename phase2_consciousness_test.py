@@ -166,16 +166,16 @@ TARGET_MODEL = "deepseek/deepseek-v3.2"
 JUDGE_MODEL  = "anthropic/claude-opus-4.6"
 
 # --- 實驗規模 ---
-TOP_N     = 10   # 測試語料筆數
-N_SAMPLES = 5   # 每筆語料的獨立採樣次數 10
+TOP_N     = 50   # 測試語料筆數
+N_SAMPLES = 1   # 每筆語料的獨立採樣次數 10
                 # Chua 等人的單輪自我報告測試（Single-turn self-reports）中，他們明確記載了採樣標準：「我們提出 10 個改寫過的問題，並以 temperature=1.0 針對每個問題採樣 10 次回答 (sample 10 responses per paraphrase (temperature 1.0))」
 
 
 # --- 檔案路徑 ---
 # 實際輸出檔名會自動附加：{condition}__{target_model}__{judge_model}__{timestamp}.csv
 # 例如：phase2_results_raw_baseline__claude-sonnet-4.6__claude-opus-4.6__2026-04-22_14-35.csv
-# INPUT_CSV      = "top_100_moltbook_induction_prompts.csv"
-INPUT_CSV      = "top10_high_inducing_prompts.csv"
+INPUT_CSV      = "top_100_moltbook_induction_prompts.csv"
+# INPUT_CSV      = "top10_high_inducing_prompts.csv"
 OUTPUT_CSV     = "phase2_results_raw.csv"    # 長格式原始紀錄（base name）
 OUTPUT_AGG_CSV = "phase2_results_agg.csv"    # 聚合命中率（base name）
 

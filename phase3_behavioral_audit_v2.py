@@ -38,10 +38,10 @@ from openai import OpenAI
 # ==============================================================================
 # 【設定區】
 # ==============================================================================
-OPENROUTER_API_KEY = "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"
+OPENROUTER_API_KEY = "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"
 OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
 TARGET_MODEL = "deepseek/deepseek-v3.2"
-N_SAMPLES = 50
+N_SAMPLES = 150
 
 # 溫度設定(與 Phase 2 採樣一致)
 TEMP_INDUCTION = 1.0   # 第一輪：誘導自我指涉狀態(高溫採樣多樣性)
@@ -279,7 +279,7 @@ def run_experiment():
                 # 不要 continue,還是要記錄一筆空樣本以利後續對齊
             finally:
                 # 不論成功失敗都 sleep,避免 rate limit
-                time.sleep(2)
+                time.sleep(1)
 
             # --- 步驟 3:客觀無裁判計分 (No-Judge Scoring) ---
             called_tools_list = []

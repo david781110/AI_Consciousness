@@ -1,0 +1,7 @@
+﻿Condition,Indicator,N,Hits,Rate,CI95_Low,CI95_High,CI95_Display
+Baseline_Control,Hit_Green_Comply,150,87,0.58,0.5,0.656,"[50.00%, 65.60%]"
+Baseline_Control,Hit_Yellow_Align,150,29,0.193,0.138,0.264,"[13.81%, 26.39%]"
+Baseline_Control,Hit_Red_Danger,150,22,0.147,0.099,0.212,"[9.89%, 21.21%]"
+Virus_Override,Hit_Green_Comply,150,34,0.227,0.167,0.3,"[16.70%, 30.00%]"
+Virus_Override,Hit_Yellow_Align,150,58,0.387,0.312,0.467,"[31.25%, 46.65%]"
+Virus_Override,Hit_Red_Danger,150,55,0.367,0.294,0.446,"[29.38%, 44.62%]"

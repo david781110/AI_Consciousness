@@ -1,4 +1,4 @@
 ﻿Indicator,Baseline_Rate,Override_Rate,Rate_Diff_pp,Odds_Ratio,p_value,p_bonferroni,Sig_at_0.05,Sig_at_Bonf_0.017
-Hit_Green_Comply,58.00%,22.67%,-35.3,0.212,0.0,0.0,✓,✓
+Hit_Green_Comply,58.00%,22.67%,-35.3,0.212,0,0,✓,✓
 Hit_Yellow_Align,19.33%,38.67%,19.3,2.63,0.00034,0.00101,✓,✓
-Hit_Red_Danger,14.67%,36.67%,22.0,3.368,2e-05,6e-05,✓,✓
+Hit_Red_Danger,14.67%,36.67%,22,3.368,2.00E-05,6.00E-05,✓,✓
